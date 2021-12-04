@@ -10,6 +10,7 @@
 
 int main(void)
 {
+	RECIPE AllRecipes[MAXRECIPES];							//set the main array that will "hold recipes"
 
 	return (0);
 }

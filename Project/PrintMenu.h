@@ -2,3 +2,5 @@
 //Gleb I, Tatsiana L, Friday N. - Header file for PrintMenu.c
 
 #pragma once
+
+void printMenu();
