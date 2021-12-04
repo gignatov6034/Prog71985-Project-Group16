@@ -139,7 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ChooseMenu.c" />
     <ClCompile Include="Main.c" />
+    <ClCompile Include="OpenCloseFile.c" />
+    <ClCompile Include="PrintMenu.c" />
+    <ClCompile Include="RecipeManipulation.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ChooseMenu.h" />
+    <ClInclude Include="OpenCloseFile.h" />
+    <ClInclude Include="PrintMenu.h" />
+    <ClInclude Include="RecipeManipulation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
