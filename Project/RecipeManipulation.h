@@ -15,7 +15,7 @@ typedef struct recipe {
 	char title[MAXTITLE];
 	char description[MAXDESCRIPTION]; 
 
-	int number;
+	int index;
 	bool exists;
 
 } RECIPE;
@@ -23,6 +23,8 @@ typedef struct recipe {
 void addRecipe(RECIPE* AllRecipes);
 void deleteRecipe(RECIPE* AllRecipes);
 void updateRecipe(RECIPE* AllRecipes);
-void singleRecipe(RECIPE* AllRecipes);
+void displaySingleRecipe(RECIPE* AllRecipes);
+void displayRangeOfRecipes(RECIPE* AllRecipes);
 void displayAllRecipes(RECIPE* AllRecipes);
-void searchRecipe(RECIPE* AllRecipes);
+void searchForRecipe(RECIPE* AllRecipes);
+void setRecipesIndex(RECIPE* AllRecipes);

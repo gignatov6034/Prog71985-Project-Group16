@@ -5,3 +5,41 @@
 
 #include <stdio.h>
 #include "RecipeManipulation.h"
+
+void addRecipe(RECIPE* AllRecipes)
+{
+
+}
+
+void deleteRecipe(RECIPE* AllRecipes)
+{
+
+}
+
+void updateRecipe(RECIPE* AllRecipes)
+{
+
+}
+
+void displaySingleRecipe(RECIPE* AllRecipes)
+{
+
+}
+
+void displayAllRecipes(RECIPE* AllRecipes)
+{
+
+}
+
+void searchForRecipe(RECIPE* AllRecipes)
+{
+
+}
+
+void setRecipesIndex(RECIPE* AllRecipes)
+{
+	for (int i = 0; i < MAXRECIPES; i++)
+	{
+		AllRecipes[i].index = (i + 1);							
+	}
+}

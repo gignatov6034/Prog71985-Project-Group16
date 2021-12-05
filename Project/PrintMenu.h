@@ -3,4 +3,6 @@
 
 #pragma once
 
-void printMenu();
+void printMainMenu();
+void PrintWelcome();
+void printProgramDescription();
