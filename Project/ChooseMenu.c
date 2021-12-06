@@ -59,32 +59,3 @@ void PrintWelcomeMenu(RECIPE* AllRecipes)
 	}
 }
 
-void updateMenu(RECIPE* AllRecipes)
-{
-	printUpdateMenu();
-
-	fprintf(stdout, "\t\t\tPease enter 1 char to select an option...\n");
-	char menuChoice = getch();
-	fprintf(stdout, "\t\t\tChar: = %c\n\n", menuChoice);
-
-	switch (menuChoice)
-	{
-	case 'a':
-		
-		break;
-	case 'b':
-		
-		break;
-	case 'c':
-		
-		break;
-	case 'd':
-		break;
-	default:
-		fprintf(stdout, "\t\t\tInappropriate input\n");
-		fprintf(stdout, "\t\t\tPlease be careful next time!\n");
-		fprintf(stdout, "\t\t\tEnd of the program...\n");
-		exit(1);
-		break;
-	}
-}

@@ -6,4 +6,3 @@
 #include "RecipeManipulation.h"
 
 void PrintWelcomeMenu(RECIPE* AllRecipes);
-void updateMenu(RECIPE* AllRecipes);
