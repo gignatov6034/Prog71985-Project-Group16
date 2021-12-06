@@ -2,6 +2,7 @@
 //Gleb I, Tatsiana L, Friday N. - ChooseMenu.c contains all functions related to menu selection (switch - case functions)
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "ChooseMenu.h"
 #include "PrintMenu.h"
 
@@ -15,7 +16,7 @@ void PrintWelcomeMenu(RECIPE* AllRecipes)
 	{
 		printMainMenu();
 
-		fprintf(stdout, "\t\t\t\nPease enter 1 char to select an option...\n");
+		fprintf(stdout, "\t\t\tPease enter 1 char to select an option...\n");
 		char menuChoice = getch();														
 		fprintf(stdout, "\t\t\tChar: = %c\n\n", menuChoice);
 
@@ -49,11 +50,41 @@ void PrintWelcomeMenu(RECIPE* AllRecipes)
 			continueProgram = false; 
 			break;
 		default:
-			fprintf(stdout, "\t\t\t\nInappropriate input\n");
+			fprintf(stdout, "\t\t\tInappropriate input\n");
 			fprintf(stdout, "\t\t\tPlease be careful next time!\n");
-			fprintf(stdout, "\t\t\t\nEnd of the program...\n");
+			fprintf(stdout, "\t\t\tEnd of the program...\n");
 			continueProgram = false; 
 			break;
 		}
+	}
+}
+
+void updateMenu(RECIPE* AllRecipes)
+{
+	printUpdateMenu();
+
+	fprintf(stdout, "\t\t\tPease enter 1 char to select an option...\n");
+	char menuChoice = getch();
+	fprintf(stdout, "\t\t\tChar: = %c\n\n", menuChoice);
+
+	switch (menuChoice)
+	{
+	case 'a':
+		
+		break;
+	case 'b':
+		
+		break;
+	case 'c':
+		
+		break;
+	case 'd':
+		break;
+	default:
+		fprintf(stdout, "\t\t\tInappropriate input\n");
+		fprintf(stdout, "\t\t\tPlease be careful next time!\n");
+		fprintf(stdout, "\t\t\tEnd of the program...\n");
+		exit(1);
+		break;
 	}
 }

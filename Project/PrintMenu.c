@@ -37,3 +37,12 @@ void printProgramDescription()
 	fprintf(stdout, "\t\t\tdelete, update, display, and search for recipes.\n");
 	fprintf(stdout, "\t\t\tEach recipe consists of a titte and description\n\n");
 }
+
+void printUpdateMenu()
+{
+	fprintf(stdout, "\t\t\tHow do you want to update your recipe?\n\n");
+	fprintf(stdout, "\t\t\ta) Change the title\n");
+	fprintf(stdout, "\t\t\tb) Change the description\n");
+	fprintf(stdout, "\t\t\tc) Change the title and description\n");
+	fprintf(stdout, "\t\t\td) Go back to the main menu\n\n");
+}

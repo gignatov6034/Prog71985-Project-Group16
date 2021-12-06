@@ -28,3 +28,4 @@ void displayRangeOfRecipes(RECIPE* AllRecipes);
 void displayAllRecipes(RECIPE* AllRecipes);
 void searchForRecipe(RECIPE* AllRecipes);
 void setRecipesIndex(RECIPE* AllRecipes);
+bool checkIfExists(RECIPE* AllRecipes);
