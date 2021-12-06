@@ -8,7 +8,58 @@
 
 void addRecipe(RECIPE* AllRecipes)
 {
+	bool isFull = true;
 
+	for (int i = 0; i < MAXRECIPES; i++)
+	{
+		if (AllRecipes[i].exists == false)					
+		{
+			isFull = false;
+			break;
+		}
+	}
+
+	if (isFull)
+	{
+		fprintf(stdout, "\t\t\tThe list is full!");			//if the array is full, then return
+		return;
+	}
+
+	char recipeTitle[MAXTITLE];
+	char recipeDescription[MAXDESCRIPTION];
+
+	fprintf(stdout, "\t\t\tPlease enter the title of your recipe (q to go back):\n");
+	
+	if (fscanf(stdin, "%s", recipeTitle) != 1)
+	{
+		fprintf(stdout, "\t\t\tInappropriate input\n");
+		return;
+	}
+	
+	if (recipeTitle == 'q')
+		return;
+
+	fprintf(stdout, "\t\t\tPlease enter the description of your recipe (q to go back):\n");
+
+	if (fscanf(stdin, "%s", recipeDescription) != 1)
+	{
+		fprintf(stdout, "\t\t\tInappropriate input\n");
+		return;
+	}
+
+	if (recipeTitle == 'q')
+		return;
+
+	for (int i = 0; i < MAXRECIPES; i++)
+	{
+		if (AllRecipes[i].exists == false)
+		{
+			strcpy(&AllRecipes[i].title[0], &recipeTitle);
+			strcpy(&AllRecipes[i].description[0], &recipeDescription);
+		}
+	}
+
+	setRecipesIndex(&AllRecipes[0]);
 }
 
 void deleteRecipe(RECIPE* AllRecipes)
@@ -19,7 +70,31 @@ void deleteRecipe(RECIPE* AllRecipes)
 		return;
 	}
 
+	fprintf(stdout, "\t\t\tPlease enter the number of the recipe to be deleted (0 to go back):\n");
 
+	int recipeNumber;
+
+	if ((fscanf(stdin, "%d", &recipeNumber) != 1))
+	{
+		fprintf(stdout, "\t\t\tInappropriate input\n");
+		return;
+	}
+	else if (recipeNumber <= 0 || recipeNumber > 50)
+	{
+		fprintf(stdout, "\t\t\tThe value is not in range. Shoud be from 1 to 50\n");
+		return;
+	}
+	else if (AllRecipes[recipeNumber - 1].exists == false)
+	{
+		fprintf(stdout, "\t\t\tA recipe with this number does not exist\n");
+		return;
+	}
+
+	AllRecipes[recipeNumber - 1].title[0] = 0;
+	AllRecipes[recipeNumber - 1].description[0] = 0;
+	AllRecipes[recipeNumber - 1].exists = false;
+
+	setRecipesIndex(&AllRecipes[0]);
 }
 
 void updateRecipe(RECIPE* AllRecipes)
