@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ChooseMenu.c" />
+    <ClCompile Include="DisplayRecipes.c" />
     <ClCompile Include="Main.c" />
     <ClCompile Include="OpenCloseFile.c" />
     <ClCompile Include="PrintMenu.c" />
@@ -147,6 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChooseMenu.h" />
+    <ClInclude Include="DisplayRecipes.h" />
     <ClInclude Include="OpenCloseFile.h" />
     <ClInclude Include="PrintMenu.h" />
     <ClInclude Include="RecipeManipulation.h" />

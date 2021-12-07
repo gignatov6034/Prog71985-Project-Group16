@@ -10,15 +10,17 @@ void PrintWelcomeMenu(RECIPE* AllRecipes)
 {
 	setRecipesIndex(&AllRecipes[0]);					//sets all recipes' inicators (index) in ordinal
 
+	PrintWelcome();
+
 	bool continueProgram = true;
 
 	while (continueProgram)
 	{
 		printMainMenu();
 
-		fprintf(stdout, "\t\t\tPease enter 1 char to select an option...\n");
+		fprintf(stdout, "\t\t\t\tPease enter 1 char to select an option...\n");
 		char menuChoice = getch();														
-		fprintf(stdout, "\t\t\tChar: = %c\n\n", menuChoice);
+		fprintf(stdout, "\t\t\t\tChar: = %c\n\n", menuChoice);
 
 		switch (menuChoice)
 		{

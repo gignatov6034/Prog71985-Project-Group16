@@ -6,16 +6,16 @@
 
 void printMainMenu()
 {
-	fprintf(stdout, "\t\t\t\t\t\tMain Menu\n");
-	fprintf(stdout, "\t\t\ta) Add new recipe\n");
-	fprintf(stdout, "\t\t\tb) Delete an existing recipe\n");
-	fprintf(stdout, "\t\t\tc) Update an existing recipe\n");
-	fprintf(stdout, "\t\t\td) Display a single recipe\n");
-	fprintf(stdout, "\t\t\te) Display a range of recipes\n");
-	fprintf(stdout, "\t\t\tf) Display all recipes\n");
-	fprintf(stdout, "\t\t\tg) Search for a recipe\n\n");
-	fprintf(stdout, "\t\t\th) Show program description\n\n");
-	fprintf(stdout, "\t\t\ti) Quit\n\n");
+	fprintf(stdout, "\t\t\t\t\t\tMain Menu\n\n");
+	fprintf(stdout, "\ta) Add new recipe\n");
+	fprintf(stdout, "\tb) Delete an existing recipe\n");
+	fprintf(stdout, "\tc) Update an existing recipe\n");
+	fprintf(stdout, "\td) Display a single recipe\n");
+	fprintf(stdout, "\te) Display a range of recipes\n");
+	fprintf(stdout, "\tf) Display all recipes\n");
+	fprintf(stdout, "\tg) Search for a recipe\n\n");
+	fprintf(stdout, "\th) Show program description\n\n");
+	fprintf(stdout, "\ti) Quit\n\n");
 }
 
 void PrintWelcome()
@@ -41,8 +41,8 @@ void printProgramDescription()
 void printUpdateMenu()
 {
 	fprintf(stdout, "\t\t\tHow do you want to update your recipe?\n\n");
-	fprintf(stdout, "\t\t\ta) Change the title\n");
-	fprintf(stdout, "\t\t\tb) Change the description\n");
-	fprintf(stdout, "\t\t\tc) Change the title and description\n");
-	fprintf(stdout, "\t\t\td) Go back to the main menu\n\n");
+	fprintf(stdout, "\ta) Change the title\n");
+	fprintf(stdout, "\tb) Change the description\n");
+	fprintf(stdout, "\tc) Change the title and description\n");
+	fprintf(stdout, "\td) Go back to the main menu\n\n");
 }

@@ -1,7 +1,8 @@
 //Prog71985 - Project - Group 16
 //Gleb I, Tatsiana L, Friday N. - RecipeManipulation.c contains all 
-//functions related to using or modifying the array of recipes 
+//functions related to modifying the array of recipes 
 
+#define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
 #include "RecipeManipulation.h"
@@ -12,7 +13,7 @@ void addRecipe(RECIPE* AllRecipes)
 
 	for (int i = 0; i < MAXRECIPES; i++)
 	{
-		if (AllRecipes[i].exists == false)					
+		if (AllRecipes[i].exists != true)					
 		{
 			isFull = false;
 			break;
@@ -21,41 +22,43 @@ void addRecipe(RECIPE* AllRecipes)
 
 	if (isFull)
 	{
-		fprintf(stdout, "\t\t\tThe list is full!");			//if the array is full, then return
+		fprintf(stdout, "\t\t\tThe list is full!\n");			//if the array is full, then return
 		return;
 	}
 
 	char recipeTitle[MAXTITLE];
 	char recipeDescription[MAXDESCRIPTION];
 
-	fprintf(stdout, "\t\t\tPlease enter the title of your recipe (q to go back):\n");
+	fprintf(stdout, "\t\tPlease enter the title of your recipe (0 to go back):\n\t\t");
 	
-	if (fscanf(stdin, "%s", recipeTitle) != 1)
+	if (gets(recipeTitle) == NULL)
 	{
-		fprintf(stdout, "\t\t\tInappropriate input\n");
+		fprintf(stdout, "\t\tInappropriate input\n");
 		return;
 	}
 	
-	if (recipeTitle == 'q')
+	if (recipeTitle[0] == '0')
 		return;
 
-	fprintf(stdout, "\t\t\tPlease enter the description of your recipe (q to go back):\n");
+	fprintf(stdout, "\t\tPlease enter the description of your recipe (0 to cancel and go back):\n\t\t");
 
-	if (fscanf(stdin, "%s", recipeDescription) != 1)
+	if (gets(recipeDescription) == NULL)
 	{
-		fprintf(stdout, "\t\t\tInappropriate input\n");
+		fprintf(stdout, "\t\tInappropriate input\n");
 		return;
 	}
 
-	if (recipeTitle == 'q')
+	if (recipeDescription[0] == '0')
 		return;
 
 	for (int i = 0; i < MAXRECIPES; i++)
 	{
-		if (AllRecipes[i].exists == false)
+		if (AllRecipes[i].exists != true)
 		{
 			strcpy(&AllRecipes[i].title[0], &recipeTitle);
 			strcpy(&AllRecipes[i].description[0], &recipeDescription);
+			AllRecipes[i].exists = true;
+			break;
 		}
 	}
 
@@ -64,31 +67,33 @@ void addRecipe(RECIPE* AllRecipes)
 
 void deleteRecipe(RECIPE* AllRecipes)
 {
-	if (!checkIfExists)
+	if (!checkIfExists(&AllRecipes[0]))
 	{
-		fprintf(stdout, "\t\t\tNo recipes were added\n");
+		fprintf(stdout, "\t\tNo recipes were added\n");
 		return;
 	}
 
-	fprintf(stdout, "\t\t\tPlease enter the number of the recipe to be deleted (0 to go back):\n");
+	fprintf(stdout, "\t\tPlease enter the number of the recipe to be deleted (0 to go back):\n\t\t");
 
 	int recipeNumber;
 
 	if ((fscanf(stdin, "%d", &recipeNumber) != 1))
 	{
-		fprintf(stdout, "\t\t\tInappropriate input\n");
+		fprintf(stdout, "\t\tInappropriate input\n");
 		return;
 	}
-	else if (recipeNumber <= 0 || recipeNumber > 50)
+	else if (recipeNumber < 0 || recipeNumber > 50)
 	{
-		fprintf(stdout, "\t\t\tThe value is not in range. Shoud be from 1 to 50\n");
+		fprintf(stdout, "\t\tThe value is not in range. Shoud be from 1 to 50\n");
 		return;
 	}
-	else if (AllRecipes[recipeNumber - 1].exists == false)
+	else if (AllRecipes[recipeNumber - 1].exists != true)
 	{
-		fprintf(stdout, "\t\t\tA recipe with this number does not exist\n");
+		fprintf(stdout, "\t\tA recipe with this number does not exist\n");
 		return;
 	}
+	else if (recipeNumber == 0)
+		return;
 
 	AllRecipes[recipeNumber - 1].title[0] = 0;
 	AllRecipes[recipeNumber - 1].description[0] = 0;
@@ -99,146 +104,164 @@ void deleteRecipe(RECIPE* AllRecipes)
 
 void updateRecipe(RECIPE* AllRecipes)
 {
-	if (!checkIfExists)
+	if (!checkIfExists(&AllRecipes[0]))
 	{
-		fprintf(stdout, "\t\t\tNo recipes were added\n");
+		fprintf(stdout, "\t\tNo recipes were added\n");
 		return;
 	}
 
 	printUpdateMenu();
 
-	fprintf(stdout, "\t\t\tPease enter 1 char to select an option...\n");
+	fprintf(stdout, "\t\t\tPease enter 1 char to select an option...\n\t\t");
 	char menuChoice = getch();
-	fprintf(stdout, "\t\t\tChar: = %c\n\n", menuChoice);
+	fprintf(stdout, "\t\tChar: = %c\n\n", menuChoice);
+
+	char recipeTitle[MAXTITLE];
+	char recipeDescription[MAXTITLE];
+	int numberOfRecipe;
 
 	switch (menuChoice)
 	{
-	case 'a':
+	case 'a':																				
+		
+		fprintf(stdout, "\t\tPlease enter the number of a recipe you want to update (0 to go back):\n\t\t");
+		if (scanf("%d", &numberOfRecipe) != 1)
+		{
+			fprintf(stdout, "\t\tInappropriate input\n\n");
+			return;
+		}
+		fprintf(stdout, "\t\t\tInteger: %d\n\n", numberOfRecipe);
 
+		if (numberOfRecipe == 0)													//go back to the main menu if 0
+			return;
+		else if (numberOfRecipe < 0 || numberOfRecipe > 50									//cheks if the input is appropriate 
+			|| AllRecipes[numberOfRecipe - 1].exists != true)
+		{
+			fprintf(stdout, "\t\tThe recipe does not exist\n\n");
+			return;
+		}
+
+		fprintf(stdout, "\t\t\t\t---Recipe number %2d ---\n", AllRecipes[numberOfRecipe - 1].index);
+		fprintf(stdout, "\t Title: %s\n\n", AllRecipes[numberOfRecipe - 1].title);
+
+		fprintf(stdout, "\t\t\tPlease enter the new title (0 to go back):\n\t\t");
+
+		if (gets(recipeTitle) == NULL)
+		{
+			fprintf(stdout, "\t\tInappropriate input\n");
+			return;
+		}
+
+		if (recipeTitle[0] == '0')
+			return;
+
+		strcpy(&AllRecipes[numberOfRecipe - 1].title[0], &recipeTitle);
+
+		fprintf(stdout, "\t New Title: %s\n\n", AllRecipes[numberOfRecipe - 1].title);
 		break;
 	case 'b':
+		fprintf(stdout, "\t\t\t\tPlease enter the number of a recipe you want to update (0 to go back):\n\t\t");
+		if (scanf("%d", &numberOfRecipe) != 1)
+		{
+			fprintf(stdout, "\t\tInappropriate input\n\n");
+			return;
+		}
+		fprintf(stdout, "\t\t\tInteger: %d\n\n", numberOfRecipe);
 
+		if (numberOfRecipe == 0)													//go back to the main menu if 0
+			return;
+		else if (numberOfRecipe < 0 || numberOfRecipe > 50									//cheks if the input is appropriate 
+			|| AllRecipes[numberOfRecipe - 1].exists != true)
+		{
+			fprintf(stdout, "\t\tThe recipe does not exist\n\n");
+			return;
+		}
+
+		fprintf(stdout, "\t\t\t\t---Recipe number %2d ---\n", AllRecipes[numberOfRecipe - 1].index);
+		fprintf(stdout, "\t Description: %s\n\n", AllRecipes[numberOfRecipe - 1].description);
+
+		fprintf(stdout, "\t\t\tPlease enter the new description (0 to go back):\n\t\t");
+
+		if (gets(recipeDescription) == NULL)
+		{
+			fprintf(stdout, "\t\tInappropriate input\n");
+			return;
+		}
+
+		if (recipeDescription[0] == '0')
+			return;
+
+		strcpy(&AllRecipes[numberOfRecipe - 1].description[0], &recipeDescription);
+
+		fprintf(stdout, "\t New description: %s\n\n", AllRecipes[numberOfRecipe - 1].description);
 		break;
 	case 'c':
 
+		fprintf(stdout, "\t\t\tPlease enter the number of a recipe you want to update (0 to go back):\n\t\t");
+		if (scanf("%d", &numberOfRecipe) != 1)
+		{
+			fprintf(stdout, "\t\tInappropriate input\n\n");
+			return;
+		}
+		fprintf(stdout, "\t\t\tInteger: %d\n\n", numberOfRecipe);
+
+		if (numberOfRecipe == 0)													//go back to the main menu if 0
+			return;
+		else if (numberOfRecipe < 0 || numberOfRecipe > 50									//cheks if the input is appropriate 
+			|| AllRecipes[numberOfRecipe - 1].exists != true)
+		{
+			fprintf(stdout, "\t\tThe recipe does not exist\n\n");
+			return;
+		}
+
+		fprintf(stdout, "\t\t\t\t---Recipe number %2d ---\n", AllRecipes[numberOfRecipe - 1].index);
+		fprintf(stdout, "\t Title: %s\n", AllRecipes[numberOfRecipe - 1].title);
+		fprintf(stdout, "\t Description: %s\n\n", AllRecipes[numberOfRecipe - 1].description);
+
+		fprintf(stdout, "\t\t\tPlease enter the new title (0 to go back):\n\t\t");
+
+		if (gets(recipeTitle) == NULL)
+		{
+			fprintf(stdout, "\t\tInappropriate input\n");
+			return;
+		}
+
+		if (recipeTitle[0] == '0')
+			return;
+
+		fprintf(stdout, "\t\t\tPlease enter the new description (0 to go back):\n\t\t");
+
+		if (gets(recipeDescription) == NULL)
+		{
+			fprintf(stdout, "\t\tInappropriate input\n");
+			return;
+		}
+
+		if (recipeDescription[0] == '0')
+			return;
+
+		strcpy(&AllRecipes[numberOfRecipe - 1].title[0], &recipeTitle);
+		strcpy(&AllRecipes[numberOfRecipe - 1].description[0], &recipeDescription);
+
+		fprintf(stdout, "\t New Title: %s\n\n", AllRecipes[numberOfRecipe - 1].title);
+		fprintf(stdout, "\t New description: %s\n\n", AllRecipes[numberOfRecipe - 1].description);
 		break;
 	case 'd':
 		break;
 	default:
-		fprintf(stdout, "\t\t\tInappropriate input\n");
-		fprintf(stdout, "\t\t\tPlease be careful next time!\n");
-		fprintf(stdout, "\t\t\tEnd of the program...\n");
-		exit(1);
+		fprintf(stdout, "\t\tInappropriate input\n");
+		return;
 		break;
 	}
 }
 
-void displaySingleRecipe(RECIPE* AllRecipes)
-{
-	if (!checkIfExists)
-	{
-		fprintf(stdout, "\t\t\tNo recipes were added\n");
-		return;
-	}
-
-	int numberOfRecipe;
-
-	fprintf(stdout, "\t\t\tPlease enter the number of recipe you want to display.\n");
-	if (scanf_s("%d", &numberOfRecipe) != 1)
-	{
-		fprintf(stdout, "\t\t\tInappropriate input\n");
-		return;
-	}
-	fprinf(stdout, "\t\t\tInteger: %d", numberOfRecipe);
-
-	if (numberOfRecipe <= 0 || numberOfRecipe > 50 
-		|| AllRecipes[numberOfRecipe - 1].exists == false)
-	{
-		fprintf(stdout, "\t\t\tThe recipe does not exist");
-		return;
-	}
-	else
-	{
-		fprintf(stdout, "\t\t---Recipe number %2d ---\n", AllRecipes[numberOfRecipe - 1].index);
-		fprintf(stdout, "\t Title: %s\n", AllRecipes[numberOfRecipe - 1].title);
-		fprintf(stdout, "\t Description: %s\n\n", AllRecipes[numberOfRecipe - 1].description);
-	}
-}
-
-void displayRangeOfRecipes(RECIPE* AllRecipes)
-{
-	if (!checkIfExists)
-	{
-		fprintf(stdout, "\t\t\tNo recipes were added\n");
-		return;
-	}
-
-	int lowerLimit;
-	int upperLimit;
-
-	fprintf(stdout, "\t\t\tPlease enter the lower and upper limits for the range:\n");
-	if (scanf_s("%d %d", &lowerLimit, &upperLimit) != 2)
-	{
-		fprintf(stdout, "\t\t\tInappropriate input\n");
-		return;
-	}
-	
-	if (lowerLimit <= 0 || lowerLimit > 50 || 
-		upperLimit > 50 || upperLimit <= 0 ||
-		lowerLimit > upperLimit)
-	{
-		fprintf(stdout, "\t\t\tInappropriate input");
-	}
-
-	if (lowerLimit == upperLimit)
-	{
-		fprintf(stdout, "\t\t---Recipe number %2d ---\n", AllRecipes[lowerLimit].index);
-		fprintf(stdout, "\t Title: %s\n", AllRecipes[lowerLimit].title);
-		fprintf(stdout, "\t Description: %s\n\n", AllRecipes[lowerLimit].description);
-	}
-	else
-	{
-		for (int i = lowerLimit; i <= upperLimit; i++)
-		{
-			fprintf(stdout, "\t\t---Recipe number %2d ---\n", AllRecipes[i].index);
-			fprintf(stdout, "\t Title: %s\n", AllRecipes[i].title);
-			fprintf(stdout, "\t Description: %s\n\n", AllRecipes[i].description);
-		}
-	}
-}
-
-void displayAllRecipes(RECIPE* AllRecipes)
-{
-
-	if (!checkIfExists)
-	{
-		fprintf(stdout, "\t\t\tNo recipes were added\n");
-		return;
-	}
-
-
-	for (int i = 0; i < MAXRECIPES; i++)
-	{
-		if (AllRecipes[i].exists == true) 
-		{
-			fprintf(stdout, "\t\t---Recipe number %2d ---\n", AllRecipes[i].index);
-			fprintf(stdout, "\t Title: %s\n", AllRecipes[i].title);
-			fprintf(stdout, "\t Description: %s\n\n", AllRecipes[i].description);
-		}
-	}
-}
-
-void searchForRecipe(RECIPE* AllRecipes)
-{
-
-}
 
 void setRecipesIndex(RECIPE* AllRecipes)
 {
 	int countExist = 1;
 	for (int i = 0; i < MAXRECIPES; i++)
 	{
-		if (AllRecipes[i].exists == true)
+		if (AllRecipes[i].exists != false)
 		{
 			AllRecipes[i].index = countExist;
 			countExist++;
@@ -252,7 +275,7 @@ bool checkIfExists(RECIPE* AllRecipes)					//cheks if the array has at least 1 r
 
 	for (int i = 0; i < MAXRECIPES; i++)
 	{
-		if (AllRecipes[i].exists == true)
+		if (AllRecipes[i].exists != false)
 		{
 			exists = true;
 			break;
@@ -260,4 +283,13 @@ bool checkIfExists(RECIPE* AllRecipes)					//cheks if the array has at least 1 r
 	}
 
 	return exists;
+}
+
+
+void SetArray(RECIPE* AllRecipes)
+{
+	for (int i = 0; i < MAXRECIPES; i++)
+	{
+		AllRecipes[i].exists = false;
+	}
 }

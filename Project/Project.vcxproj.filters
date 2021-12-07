@@ -30,6 +30,9 @@
     <ClCompile Include="RecipeManipulation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DisplayRecipes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PrintMenu.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RecipeManipulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DisplayRecipes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

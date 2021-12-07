@@ -1,6 +1,8 @@
 //Prog71985 - Project - Group 16
 //Gleb I, Tatsiana L, Friday N. - OpenCloseFile.c contains all functions related to saving data to disk
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "OpenCloseFile.h"

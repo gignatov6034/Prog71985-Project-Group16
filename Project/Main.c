@@ -12,9 +12,11 @@ int main(void)
 {
 	RECIPE AllRecipes[MAXRECIPES];							//set the main array that will "hold recipes"
 
+	SetArray(&AllRecipes[0]);
+
 	OpenAndLoadFile(&AllRecipes[0]);
 
-	PrintWelcome(&AllRecipes[0]);
+	PrintWelcomeMenu(&AllRecipes[0]);
 
 	SaveAndCloseFile(&AllRecipes[0]);
 
