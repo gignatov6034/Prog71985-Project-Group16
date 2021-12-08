@@ -8,7 +8,7 @@
 
 #define MAXTITLE 80
 #define MAXDESCRIPTION 400
-#define MAXRECIPES 50
+#define MAXRECIPES 25
 
 typedef struct recipe {
 

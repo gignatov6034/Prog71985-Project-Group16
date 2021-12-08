@@ -125,8 +125,8 @@ void displayAllRecipes(RECIPE* AllRecipes)
 
 void searchForRecipe(RECIPE* AllRecipes)
 {
-	fprintf(stdout, "\t\tYou can find recipes by typing their titles\n");
-	fprintf(stdout, "\t\tPress ENTER when you want to find coincidences (type 0 to go back)\n");
+	fprintf(stdout, "\tYou can find recipes by typing their titles\n");
+	fprintf(stdout, "\tPress ENTER when you want to find coincidences (type 0 to go back)\n\n\t");
 
 	char recipeTitle[MAXTITLE];
 
@@ -143,27 +143,39 @@ void searchForRecipe(RECIPE* AllRecipes)
 
 	while (recipeTitle[i])
 	{
-		putchar(tolower(recipeTitle[i]));
+		recipeTitle[i] = tolower(recipeTitle[i]);
 		i++;
 	}
 
-	char changeCapitals[MAXRECIPES];
+	RECIPE changeCapitals[MAXRECIPES];
 
-	memcpy(changeCapitals, AllRecipes, MAXRECIPES);
+	memcpy(changeCapitals, AllRecipes, sizeof(*AllRecipes));
 
 	int b = 0;
 
 	for (i = 0; i < MAXRECIPES; i++)
 	{
-		while (AllRecipes[i].title[b])
+		while (changeCapitals[i].title[b])
 		{
-			putchar(tolower(AllRecipes[i].title[b]));
+			changeCapitals[i].title[b] = tolower(changeCapitals[i].title[b]);
 			b++;
 		}
 	}
 
+	bool isEqual = false;
+
+	fprintf(stdout, "\n\tFound recipes:\n\n");
+
 	for (i = 0; i < MAXRECIPES; i++)
 	{
-
+		if (strncmp(changeCapitals[i].title, recipeTitle, (sizeof(&recipeTitle)))  == 0)
+		{
+			fprintf(stdout, "\t Recipe number %d. Title: %s\n", AllRecipes[i].index, AllRecipes[i].title);
+			isEqual = true;
+		}
 	}
+	if (!isEqual)
+		fprintf(stdout, "\tRecipes were not found\n\n");
+	else
+		fprintf(stdout, "\n\tThe end of the list.\n\n");
 }

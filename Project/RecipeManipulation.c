@@ -5,6 +5,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stdio.h>
+#include <string.h>
 #include "RecipeManipulation.h"
 
 void addRecipe(RECIPE* AllRecipes)
@@ -31,7 +32,7 @@ void addRecipe(RECIPE* AllRecipes)
 
 	fprintf(stdout, "\t\tPlease enter the title of your recipe (0 to go back):\n\t\t");
 	
-	if (gets(recipeTitle) == NULL)
+	if (fgets(recipeTitle, MAXTITLE, stdin) == NULL)
 	{
 		fprintf(stdout, "\t\tInappropriate input\n");
 		return;
@@ -42,7 +43,7 @@ void addRecipe(RECIPE* AllRecipes)
 
 	fprintf(stdout, "\t\tPlease enter the description of your recipe (0 to cancel and go back):\n\t\t");
 
-	if (gets(recipeDescription) == NULL)
+	if (fgets(recipeDescription, MAXDESCRIPTION, stdin) == NULL)
 	{
 		fprintf(stdout, "\t\tInappropriate input\n");
 		return;
@@ -61,6 +62,8 @@ void addRecipe(RECIPE* AllRecipes)
 			break;
 		}
 	}
+
+	fprintf(stdout, "\tThe recipe was successfully added.\n");
 
 	setRecipesIndex(&AllRecipes[0]);
 }
@@ -98,6 +101,8 @@ void deleteRecipe(RECIPE* AllRecipes)
 	AllRecipes[recipeNumber - 1].title[0] = 0;
 	AllRecipes[recipeNumber - 1].description[0] = 0;
 	AllRecipes[recipeNumber - 1].exists = false;
+
+	fprintf(stdout, "\tThe recipe was successfully deleted.\n");
 
 	setRecipesIndex(&AllRecipes[0]);
 }
@@ -141,12 +146,14 @@ void updateRecipe(RECIPE* AllRecipes)
 			return;
 		}
 
+		while ((getchar()) != '\n');																		//clear the input buffer
+
 		fprintf(stdout, "\t\t\t\t---Recipe number %2d ---\n", AllRecipes[numberOfRecipe - 1].index);
 		fprintf(stdout, "\t Title: %s\n\n", AllRecipes[numberOfRecipe - 1].title);
 
 		fprintf(stdout, "\t\t\tPlease enter the new title (0 to go back):\n\t\t");
 
-		if (gets(recipeTitle) == NULL)
+		if (fgets(recipeTitle, MAXTITLE, stdin) == NULL)
 		{
 			fprintf(stdout, "\t\tInappropriate input\n");
 			return;
@@ -157,7 +164,9 @@ void updateRecipe(RECIPE* AllRecipes)
 
 		strcpy(&AllRecipes[numberOfRecipe - 1].title[0], &recipeTitle);
 
-		fprintf(stdout, "\t New Title: %s\n\n", AllRecipes[numberOfRecipe - 1].title);
+		fprintf(stdout, "\n\t New Title: %s\n\n", AllRecipes[numberOfRecipe - 1].title);
+
+		fprintf(stdout, "\tThe recipe was successfully updated.\n");
 		break;
 	case 'b':
 		fprintf(stdout, "\t\t\t\tPlease enter the number of a recipe you want to update (0 to go back):\n\t\t");
@@ -177,12 +186,14 @@ void updateRecipe(RECIPE* AllRecipes)
 			return;
 		}
 
+		while ((getchar()) != '\n');																		//clear the input buffer
+
 		fprintf(stdout, "\t\t\t\t---Recipe number %2d ---\n", AllRecipes[numberOfRecipe - 1].index);
 		fprintf(stdout, "\t Description: %s\n\n", AllRecipes[numberOfRecipe - 1].description);
 
 		fprintf(stdout, "\t\t\tPlease enter the new description (0 to go back):\n\t\t");
 
-		if (gets(recipeDescription) == NULL)
+		if (fgets(recipeDescription, MAXDESCRIPTION, stdin) == NULL)
 		{
 			fprintf(stdout, "\t\tInappropriate input\n");
 			return;
@@ -194,6 +205,8 @@ void updateRecipe(RECIPE* AllRecipes)
 		strcpy(&AllRecipes[numberOfRecipe - 1].description[0], &recipeDescription);
 
 		fprintf(stdout, "\t New description: %s\n\n", AllRecipes[numberOfRecipe - 1].description);
+
+		fprintf(stdout, "\tThe recipe was successfully updated.\n");
 		break;
 	case 'c':
 
@@ -214,13 +227,15 @@ void updateRecipe(RECIPE* AllRecipes)
 			return;
 		}
 
+		while ((getchar()) != '\n');																		//clear the input buffer
+
 		fprintf(stdout, "\t\t\t\t---Recipe number %2d ---\n", AllRecipes[numberOfRecipe - 1].index);
 		fprintf(stdout, "\t Title: %s\n", AllRecipes[numberOfRecipe - 1].title);
 		fprintf(stdout, "\t Description: %s\n\n", AllRecipes[numberOfRecipe - 1].description);
 
 		fprintf(stdout, "\t\t\tPlease enter the new title (0 to go back):\n\t\t");
 
-		if (gets(recipeTitle) == NULL)
+		if (fgets(recipeTitle, MAXTITLE, stdin) == NULL)
 		{
 			fprintf(stdout, "\t\tInappropriate input\n");
 			return;
@@ -231,7 +246,7 @@ void updateRecipe(RECIPE* AllRecipes)
 
 		fprintf(stdout, "\t\t\tPlease enter the new description (0 to go back):\n\t\t");
 
-		if (gets(recipeDescription) == NULL)
+		if (fgets(recipeDescription, MAXDESCRIPTION, stdin) == NULL)
 		{
 			fprintf(stdout, "\t\tInappropriate input\n");
 			return;
@@ -245,6 +260,8 @@ void updateRecipe(RECIPE* AllRecipes)
 
 		fprintf(stdout, "\t New Title: %s\n\n", AllRecipes[numberOfRecipe - 1].title);
 		fprintf(stdout, "\t New description: %s\n\n", AllRecipes[numberOfRecipe - 1].description);
+
+		fprintf(stdout, "\tThe recipe was successfully updated.\n");
 		break;
 	case 'd':
 		break;

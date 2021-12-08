@@ -19,7 +19,7 @@ void PrintWelcomeMenu(RECIPE* AllRecipes)
 		printMainMenu();
 
 		fprintf(stdout, "\t\t\t\tPease enter 1 char to select an option...\n");
-		char menuChoice = getch();														
+		char menuChoice = getch();		
 		fprintf(stdout, "\t\t\t\tChar: = %c\n\n", menuChoice);
 
 		switch (menuChoice)

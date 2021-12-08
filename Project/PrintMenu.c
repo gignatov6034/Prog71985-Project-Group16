@@ -31,7 +31,7 @@ void printProgramDescription()
 	fprintf(stdout, "\t\t\tTatsiana Lesnikouskaya\n");
 	fprintf(stdout, "\t\t\tFriday Nsiadu\n\n");
 	fprintf(stdout, "\t\t\tProgram description:\n");
-	fprintf(stdout, "\t\t\tThe program can memorize up to 50 recipes written by\n");
+	fprintf(stdout, "\t\t\tThe program can memorize up to 25 recipes written by\n");
 	fprintf(stdout, "\t\t\ta user. The program also provides various functions\n");
 	fprintf(stdout, "\t\t\tfor viewing or modifying existing recipes: a user can\n");
 	fprintf(stdout, "\t\t\tdelete, update, display, and search for recipes.\n");
