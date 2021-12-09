@@ -42,7 +42,7 @@ void SaveAndCloseFile(RECIPE* AllRecipes)
 
 	for (int i = 0; i < MAXRECIPES; i++)
 	{
-		fwrite(&AllRecipes[i], 1, sizeof(RECIPE), fp);						//copies the data from the array to datafile.txt
+		fwrite(&AllRecipes[i], 1, sizeof(RECIPE), fp);						//puts the data from the array to datafile.txt
 	}
 
 	if (fclose(fp) != 0)

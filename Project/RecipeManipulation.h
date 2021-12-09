@@ -26,3 +26,4 @@ void updateRecipe(RECIPE* AllRecipes);
 void setRecipesIndex(RECIPE* AllRecipes);
 bool checkIfExists(RECIPE* AllRecipes);
 void SetArray(RECIPE* AllRecipes);
+void deleteAllRecipes(RECIPE* AllRecipes);

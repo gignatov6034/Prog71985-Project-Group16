@@ -7,3 +7,4 @@ void printMainMenu();
 void PrintWelcome();
 void printProgramDescription();
 void printUpdateMenu();
+void deleteAllRecipesMenu();

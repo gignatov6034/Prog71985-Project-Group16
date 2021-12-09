@@ -1,8 +1,9 @@
 //Prog71985 - Project - Group 16
-//Gleb I, Tatsiana L, Friday N. - ChooseMenu.c contains all functions related to menu selection (switch - case functions)
+//Gleb I, Tatsiana L, Friday N. - ChooseMenu.c contains all functions related to menu selection
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include "ChooseMenu.h"
 #include "PrintMenu.h"
 
@@ -20,7 +21,10 @@ void PrintWelcomeMenu(RECIPE* AllRecipes)
 
 		fprintf(stdout, "\t\t\t\tPease enter 1 char to select an option...\n");
 		char menuChoice = getch();		
-		fprintf(stdout, "\t\t\t\tChar: = %c\n\n", menuChoice);
+		fprintf(stdout, "\t\t\t\tChar: = %c\n", menuChoice);
+		fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
+
+		menuChoice = tolower(menuChoice);									//even if you type capital letters - the program will pass the input 
 
 		switch (menuChoice)
 		{
@@ -46,9 +50,12 @@ void PrintWelcomeMenu(RECIPE* AllRecipes)
 			searchForRecipe(&AllRecipes[0]);
 			break;
 		case 'h':
-			printProgramDescription();
+			deleteAllRecipes(&AllRecipes[0]);
 			break;
 		case 'i':
+			printProgramDescription();
+			break;
+		case 'j':
 			continueProgram = false; 
 			break;
 		default:

@@ -24,7 +24,7 @@ void displaySingleRecipe(RECIPE* AllRecipes)
 		fprintf(stdout, "\t\tInappropriate input\n\n");
 		return;
 	}
-	fprintf(stdout, "\t\t\tInteger: %d\n\n", numberOfRecipe);
+	fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 
 	while ((getchar()) != '\n');																		//clear the input buffer
 
@@ -33,16 +33,18 @@ void displaySingleRecipe(RECIPE* AllRecipes)
 	else if (numberOfRecipe < 0 || numberOfRecipe > 50									//cheks if the input is appropriate 
 		|| AllRecipes[numberOfRecipe - 1].exists != true)
 	{
-		fprintf(stdout, "\t\tThe recipe does not exist\n\n");
+		fprintf(stdout, "\t\tThe recipe does not exist\n");
+		fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 		return;
 	}
 
 
 	else
 	{
-		fprintf(stdout, "\t\t\t\t---Recipe number %2d ---\n", AllRecipes[numberOfRecipe - 1].index);
+		fprintf(stdout, "\n\t\t\t\t\t---Recipe number %2d ---\n", AllRecipes[numberOfRecipe - 1].index);
 		fprintf(stdout, "\t Title: %s\n", AllRecipes[numberOfRecipe - 1].title);
 		fprintf(stdout, "\t Description: %s\n\n", AllRecipes[numberOfRecipe - 1].description);
+		fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 	}
 }
 
@@ -57,12 +59,13 @@ void displayRangeOfRecipes(RECIPE* AllRecipes)
 	int lowerLimit;
 	int upperLimit;
 
-	fprintf(stdout, "\t\tPlease enter the lower and upper limits for the range:\n\t\t");
+	fprintf(stdout, "\t\t\tPlease enter the lower and upper limits for the range:\n\t\t\t");
 	if (scanf("%d %d", &lowerLimit, &upperLimit) != 2)
 	{
 		fprintf(stdout, "\t\tInappropriate input\n\n");
 		return;
 	}
+	fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n\n");
 
 	if (lowerLimit <= 0 || lowerLimit > 50 ||
 		upperLimit > 50 || upperLimit <= 0 ||
@@ -87,24 +90,27 @@ void displayRangeOfRecipes(RECIPE* AllRecipes)
 
 	if (notExist)
 	{
-		fprintf(stdout, "\t\tSome recipes in a range do not exist\n\n");
+		fprintf(stdout, "\t\t\t\tSome recipes in a range do not exist\n\n");
+		fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 		return;
 	}
 
 	if (lowerLimit == upperLimit)
 	{
-		fprintf(stdout, "\t\t\t\t---Recipe number %2d ---\n", AllRecipes[lowerLimit - 1].index);
+		fprintf(stdout, "\t\t\t\t\t---Recipe number %2d ---\n", AllRecipes[lowerLimit - 1].index);
 		fprintf(stdout, "\t Title: %s\n\n", AllRecipes[lowerLimit - 1].title);
 		fprintf(stdout, "\t Description: %s\n\n", AllRecipes[lowerLimit - 1].description);
+		fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 	}
 	else
 	{
 		for (int i = lowerLimit - 1; i <= upperLimit - 1; i++)
 		{
-			fprintf(stdout, "\t\t\t\t---Recipe number %2d ---\n", AllRecipes[i].index);
+			fprintf(stdout, "\t\t\t\t\t---Recipe number %2d ---\n", AllRecipes[i].index);
 			fprintf(stdout, "\t Title: %s\n\n", AllRecipes[i].title);
 			fprintf(stdout, "\t Description: %s\n\n", AllRecipes[i].description);
 		}
+		fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 	}
 }
 
@@ -122,16 +128,18 @@ void displayAllRecipes(RECIPE* AllRecipes)
 	{
 		if (AllRecipes[i].exists != false)
 		{
-			fprintf(stdout, "\t\t\t\t---Recipe number %2d ---\n", AllRecipes[i].index);
+			fprintf(stdout, "\t\t\t\t\t---Recipe number %2d ---\n", AllRecipes[i].index);
 			fprintf(stdout, "\t Title: %s\n\n", AllRecipes[i].title);
 			fprintf(stdout, "\t Description: %s\n\n", AllRecipes[i].description);
 		}
 	}
+	fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 }
 
 void searchForRecipe(RECIPE* AllRecipes)
 {
-	fprintf(stdout, "\tStart typing the title and press ENTER (type 0 to go back)\n\n\t");
+	fprintf(stdout, "\t\t\tStart typing the title and press ENTER (type 0 to go back)\n\t");
+	fprintf(stdout, "\t\tThe program compares your input with all titles of recipes\n\t\t\t");
 
 	char recipeTitle[MAXTITLE];
 
@@ -140,6 +148,8 @@ void searchForRecipe(RECIPE* AllRecipes)
 		fprintf(stdout, "\t\tInappropriate input\n");
 		return;
 	}
+
+	fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 
 	if (recipeTitle[0] == '0')
 		return;
@@ -179,7 +189,13 @@ void searchForRecipe(RECIPE* AllRecipes)
 		}
 	}
 	if (!isEqual)
+	{
 		fprintf(stdout, "\tRecipes were not found\n\n");
+		fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
+	}
 	else
+	{
 		fprintf(stdout, "\n\tThe end of the list.\n\n");
+		fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
+	}
 }
