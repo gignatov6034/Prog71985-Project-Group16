@@ -63,7 +63,7 @@ void addRecipe(RECIPE* AllRecipes)
 		}
 	}
 
-	fprintf(stdout, "\tThe recipe was successfully added.\n");
+	fprintf(stdout, "\n\tThe recipe was successfully added.\n");
 
 	setRecipesIndex(&AllRecipes[0]);
 }
@@ -102,7 +102,7 @@ void deleteRecipe(RECIPE* AllRecipes)
 	AllRecipes[recipeNumber - 1].description[0] = 0;
 	AllRecipes[recipeNumber - 1].exists = false;
 
-	fprintf(stdout, "\tThe recipe was successfully deleted.\n");
+	fprintf(stdout, "\n\tThe recipe was successfully deleted.\n");
 
 	setRecipesIndex(&AllRecipes[0]);
 }

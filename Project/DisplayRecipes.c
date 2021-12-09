@@ -26,6 +26,8 @@ void displaySingleRecipe(RECIPE* AllRecipes)
 	}
 	fprintf(stdout, "\t\t\tInteger: %d\n\n", numberOfRecipe);
 
+	while ((getchar()) != '\n');																		//clear the input buffer
+
 	if (numberOfRecipe == 0)													//go back to the main menu if 0
 		return;
 	else if (numberOfRecipe < 0 || numberOfRecipe > 50									//cheks if the input is appropriate 
@@ -34,6 +36,8 @@ void displaySingleRecipe(RECIPE* AllRecipes)
 		fprintf(stdout, "\t\tThe recipe does not exist\n\n");
 		return;
 	}
+
+
 	else
 	{
 		fprintf(stdout, "\t\t\t\t---Recipe number %2d ---\n", AllRecipes[numberOfRecipe - 1].index);
@@ -67,6 +71,8 @@ void displayRangeOfRecipes(RECIPE* AllRecipes)
 		fprintf(stdout, "\t\tInappropriate input\n\n");
 		return;
 	}
+
+	while ((getchar()) != '\n');																		//clear the input buffer
 
 	bool notExist = false;
 
@@ -125,8 +131,7 @@ void displayAllRecipes(RECIPE* AllRecipes)
 
 void searchForRecipe(RECIPE* AllRecipes)
 {
-	fprintf(stdout, "\tYou can find recipes by typing their titles\n");
-	fprintf(stdout, "\tPress ENTER when you want to find coincidences (type 0 to go back)\n\n\t");
+	fprintf(stdout, "\tStart typing the title and press ENTER (type 0 to go back)\n\n\t");
 
 	char recipeTitle[MAXTITLE];
 
@@ -147,28 +152,27 @@ void searchForRecipe(RECIPE* AllRecipes)
 		i++;
 	}
 
-	RECIPE changeCapitals[MAXRECIPES];
-
-	memcpy(changeCapitals, AllRecipes, sizeof(*AllRecipes));
-
-	int b = 0;
-
-	for (i = 0; i < MAXRECIPES; i++)
-	{
-		while (changeCapitals[i].title[b])
-		{
-			changeCapitals[i].title[b] = tolower(changeCapitals[i].title[b]);
-			b++;
-		}
-	}
+	char changeCapitals[MAXTITLE];
 
 	bool isEqual = false;
 
 	fprintf(stdout, "\n\tFound recipes:\n\n");
 
+	int b = 0;
+
 	for (i = 0; i < MAXRECIPES; i++)
 	{
-		if (strncmp(changeCapitals[i].title, recipeTitle, (sizeof(&recipeTitle)))  == 0)
+		memcpy(changeCapitals, &AllRecipes[i].title, sizeof(&changeCapitals));
+
+		b = 0;
+
+		while (changeCapitals[b])
+		{
+			changeCapitals[b] = tolower(changeCapitals[b]);
+			b++;
+		}
+
+		if (strncmp(changeCapitals, recipeTitle, (sizeof(&recipeTitle)))  == 0)
 		{
 			fprintf(stdout, "\t Recipe number %d. Title: %s\n", AllRecipes[i].index, AllRecipes[i].title);
 			isEqual = true;
