@@ -1,5 +1,6 @@
 //Prog71985 - Project - Group 16
 //Gleb I, Tatsiana L, Friday N. - OpenCloseFile.c contains all functions related to saving data to disk
+//Editor - Gleb Ignatov.
 
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -7,7 +8,7 @@
 #include <stdlib.h>
 #include "OpenCloseFile.h"
 
-void OpenAndLoadFile(RECIPE* AllRecipes)
+void OpenAndLoadFile(RECIPE* AllRecipes)									//opens datafile.txt, reads data to the array, and closes the file 
 {
 	RECIPE* fp;
 
@@ -30,7 +31,7 @@ void OpenAndLoadFile(RECIPE* AllRecipes)
 	}
 }
 
-void SaveAndCloseFile(RECIPE* AllRecipes)
+void SaveAndCloseFile(RECIPE* AllRecipes)									//opens the file, deletes data, and puts data from the array to the file
 {
 	RECIPE* fp;
 

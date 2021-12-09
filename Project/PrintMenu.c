@@ -1,5 +1,6 @@
 //Prog71985 - Project - Group 16
 //Gleb I, Tatsiana L, Friday N. - PrintMenu.c contains all functions related to the UI 
+//Editor - Gleb Ignatov.
 
 #include <stdio.h>
 #include "PrintMenu.h"
@@ -39,7 +40,7 @@ void printProgramDescription()
 	fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 	fprintf(stdout, "\n\t\t\t\t\t   Program description:\n\n");
 	fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
-	fprintf(stdout, "\t\t\tThe program can memorize up to 50 recipes written by\n");
+	fprintf(stdout, "\t\t\tThe program can memorize up to 25 recipes written by\n");
 	fprintf(stdout, "\t\t\ta user. The program also provides various functions\n");
 	fprintf(stdout, "\t\t\tfor viewing or modifying existing recipes: a user can\n");
 	fprintf(stdout, "\t\t\tdelete, update, display, and search for recipes.\n");

@@ -1,5 +1,6 @@
 //Prog71985 - Project - Group 16
 //Gleb I, Tatsiana L, Friday N. - ChooseMenu.c contains all functions related to displaying recipes
+//Editor - Gleb Ignatov.
 
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -8,8 +9,8 @@
 #include <ctype.h>
 #include "DisplayRecipes.h"
 
-void displaySingleRecipe(RECIPE* AllRecipes)
-{
+void displaySingleRecipe(RECIPE* AllRecipes)															//Displays a single recipe from the array
+{																										//depending on the user input (recipe number)
 	if (!checkIfExists(&AllRecipes[0]))
 	{
 		fprintf(stdout, "\t\tNo recipes were added\n");
@@ -28,9 +29,9 @@ void displaySingleRecipe(RECIPE* AllRecipes)
 
 	while ((getchar()) != '\n');																		//clear the input buffer
 
-	if (numberOfRecipe == 0)													//go back to the main menu if 0
+	if (numberOfRecipe == 0)																			//go back to the main menu if 0
 		return;
-	else if (numberOfRecipe < 0 || numberOfRecipe > 50									//cheks if the input is appropriate 
+	else if (numberOfRecipe < 0 || numberOfRecipe > 50													//cheks if the input is appropriate 
 		|| AllRecipes[numberOfRecipe - 1].exists != true)
 	{
 		fprintf(stdout, "\t\tThe recipe does not exist\n");
@@ -48,8 +49,8 @@ void displaySingleRecipe(RECIPE* AllRecipes)
 	}
 }
 
-void displayRangeOfRecipes(RECIPE* AllRecipes)
-{
+void displayRangeOfRecipes(RECIPE* AllRecipes)															//Takes 2 integers from user input and 
+{																										//displays recipes in a range between (and including) integers
 	if (!checkIfExists(&AllRecipes[0]))
 	{
 		fprintf(stdout, "\t\t\tNo recipes were added\n");
@@ -94,8 +95,7 @@ void displayRangeOfRecipes(RECIPE* AllRecipes)
 		fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 		return;
 	}
-
-	if (lowerLimit == upperLimit)
+	if (lowerLimit == upperLimit)																			
 	{
 		fprintf(stdout, "\t\t\t\t\t---Recipe number %2d ---\n", AllRecipes[lowerLimit - 1].index);
 		fprintf(stdout, "\t Title: %s\n\n", AllRecipes[lowerLimit - 1].title);
@@ -114,7 +114,7 @@ void displayRangeOfRecipes(RECIPE* AllRecipes)
 	}
 }
 
-void displayAllRecipes(RECIPE* AllRecipes)
+void displayAllRecipes(RECIPE* AllRecipes)																//displays all recipes from the array. 
 {
 
 	if (!checkIfExists(&AllRecipes[0]))
@@ -136,8 +136,8 @@ void displayAllRecipes(RECIPE* AllRecipes)
 	fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 }
 
-void searchForRecipe(RECIPE* AllRecipes)
-{
+void searchForRecipe(RECIPE* AllRecipes)																//Takes user input and compares with all recipes from the array
+{																										//if similar -> display a recipe
 	fprintf(stdout, "\t\t\tStart typing the title and press ENTER (type 0 to go back)\n\t");
 	fprintf(stdout, "\t\tThe program compares your input with all titles of recipes\n\t\t\t");
 

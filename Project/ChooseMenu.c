@@ -1,5 +1,6 @@
 //Prog71985 - Project - Group 16
 //Gleb I, Tatsiana L, Friday N. - ChooseMenu.c contains all functions related to menu selection
+//Editor - Gleb Ignatov.
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +10,7 @@
 
 void PrintWelcomeMenu(RECIPE* AllRecipes)
 {
-	setRecipesIndex(&AllRecipes[0]);					//sets all recipes' inicators (index) in ordinal
+	setRecipesIndex(&AllRecipes[0]);										//sets all recipes' inicators (index) in ordinal
 
 	PrintWelcome();
 

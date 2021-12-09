@@ -1,6 +1,7 @@
 //Prog71985 - Project - Group 16
 //Gleb I, Tatsiana L, Friday N. - RecipeManipulation.c contains all 
 //functions related to modifying the array of recipes 
+//Editor - Gleb Ignatov.
 
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -9,8 +10,8 @@
 #include <ctype.h>
 #include "RecipeManipulation.h"
 
-void addRecipe(RECIPE* AllRecipes)
-{
+void addRecipe(RECIPE* AllRecipes)														//takes user input and assigns it to the first available 
+{																						//struct in the array 
 	bool isFull = true;
 
 	for (int i = 0; i < MAXRECIPES; i++)
@@ -71,7 +72,7 @@ void addRecipe(RECIPE* AllRecipes)
 	setRecipesIndex(&AllRecipes[0]);
 }
 
-void deleteRecipe(RECIPE* AllRecipes)
+void deleteRecipe(RECIPE* AllRecipes)														//takes user input and assigns 0 to the struct in the array 
 {
 	if (!checkIfExists(&AllRecipes[0]))
 	{
@@ -112,8 +113,8 @@ void deleteRecipe(RECIPE* AllRecipes)
 	setRecipesIndex(&AllRecipes[0]);
 }
 
-void updateRecipe(RECIPE* AllRecipes)
-{
+void updateRecipe(RECIPE* AllRecipes)														//3 options to update - change title, description, title and description
+{																							
 	if (!checkIfExists(&AllRecipes[0]))
 	{
 		fprintf(stdout, "\t\tNo recipes were added\n");
@@ -127,7 +128,7 @@ void updateRecipe(RECIPE* AllRecipes)
 	fprintf(stdout, "\t\tChar: = %c\n", menuChoice);
 	fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 
-	menuChoice = tolower(menuChoice);									//even if you type capital letters - the program will pass the input 
+	menuChoice = tolower(menuChoice);														//even if you type capital letters - the program will pass the input 
 
 	char recipeTitle[MAXTITLE];
 	char recipeDescription[MAXTITLE];
@@ -144,7 +145,7 @@ void updateRecipe(RECIPE* AllRecipes)
 			return;
 		}
 
-		if (numberOfRecipe == 0)													//go back to the main menu if 0
+		if (numberOfRecipe == 0)															//go back to the main menu if 0
 			return;
 		else if (numberOfRecipe < 0 || numberOfRecipe > 50									//cheks if the input is appropriate 
 			|| AllRecipes[numberOfRecipe - 1].exists != true)
@@ -153,7 +154,7 @@ void updateRecipe(RECIPE* AllRecipes)
 			return;
 		}
 
-		while ((getchar()) != '\n');																		//clear the input buffer
+		while ((getchar()) != '\n');														//clear the input buffer
 		fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 
 		fprintf(stdout, "\n\t\t\t\t---Recipe number %2d ---\n\n", AllRecipes[numberOfRecipe - 1].index);
@@ -189,7 +190,7 @@ void updateRecipe(RECIPE* AllRecipes)
 		}
 		fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 
-		if (numberOfRecipe == 0)													//go back to the main menu if 0
+		if (numberOfRecipe == 0)															//go back to the main menu if 0
 			return;
 		else if (numberOfRecipe < 0 || numberOfRecipe > 50									//cheks if the input is appropriate 
 			|| AllRecipes[numberOfRecipe - 1].exists != true)
@@ -198,7 +199,7 @@ void updateRecipe(RECIPE* AllRecipes)
 			return;
 		}
 
-		while ((getchar()) != '\n');																		//clear the input buffer
+		while ((getchar()) != '\n');														//clear the input buffer
 
 		fprintf(stdout, "\n\t\t\t\t---Recipe number %2d ---\n\n", AllRecipes[numberOfRecipe - 1].index);
 		fprintf(stdout, "\t Description: %s\n", AllRecipes[numberOfRecipe - 1].description);
@@ -234,7 +235,7 @@ void updateRecipe(RECIPE* AllRecipes)
 		}
 		fprintf(stdout, "------------------------------------------------------------------------------------------------------------\n");
 
-		if (numberOfRecipe == 0)													//go back to the main menu if 0
+		if (numberOfRecipe == 0)															//go back to the main menu if 0
 			return;
 		else if (numberOfRecipe < 0 || numberOfRecipe > 50									//cheks if the input is appropriate 
 			|| AllRecipes[numberOfRecipe - 1].exists != true)
@@ -243,7 +244,7 @@ void updateRecipe(RECIPE* AllRecipes)
 			return;
 		}
 
-		while ((getchar()) != '\n');																		//clear the input buffer
+		while ((getchar()) != '\n');														//clear the input buffer
 
 		fprintf(stdout, "\t\t\t\t---Recipe number %2d ---\n\n", AllRecipes[numberOfRecipe - 1].index);
 		fprintf(stdout, "\t Title: %s\n", AllRecipes[numberOfRecipe - 1].title);
@@ -293,7 +294,7 @@ void updateRecipe(RECIPE* AllRecipes)
 }
 
 
-void setRecipesIndex(RECIPE* AllRecipes)
+void setRecipesIndex(RECIPE* AllRecipes)				//updates recipes (structs) index
 {
 	int countExist = 1;
 	for (int i = 0; i < MAXRECIPES; i++)
@@ -323,7 +324,7 @@ bool checkIfExists(RECIPE* AllRecipes)					//cheks if the array has at least 1 r
 }
 
 
-void SetArray(RECIPE* AllRecipes)
+void SetArray(RECIPE* AllRecipes)						//Assigns all structs in the array to false
 {
 	for (int i = 0; i < MAXRECIPES; i++)
 	{
@@ -331,7 +332,7 @@ void SetArray(RECIPE* AllRecipes)
 	}
 }
 
-void deleteAllRecipes(RECIPE* AllRecipes)
+void deleteAllRecipes(RECIPE* AllRecipes)				//assigns all structs in the array to 0
 {
 	if (!checkIfExists(&AllRecipes[0]))
 	{

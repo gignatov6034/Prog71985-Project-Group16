@@ -1,6 +1,7 @@
 //Prog71985 - Project - Group 16
 //Gleb I, Tatsiana L, Friday N. - Header file for RecipeManipulation.c; 
 //Recipe struct. 
+//Editor - Gleb Ignatov.
 
 #pragma once
 
@@ -8,7 +9,7 @@
 
 #define MAXTITLE 80
 #define MAXDESCRIPTION 400
-#define MAXRECIPES 50
+#define MAXRECIPES 25
 
 typedef struct recipe {
 
